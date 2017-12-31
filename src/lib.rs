@@ -18,14 +18,14 @@ pub fn read_input(day: &str) -> Vec<String> {
     buf.lines().map( |l| l.unwrap()).collect()
 }
 
-enum Stars {
+pub enum Stars {
     Zero,
     One,
 }
 
 pub struct Progress {
-    day: usize,
-    stars: Stars,
+    pub day: usize,
+    pub stars: Stars,
 }
 
 impl Progress {
