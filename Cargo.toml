@@ -1,0 +1,10 @@
+[package]
+name = "advent"
+version = "0.1.0"
+authors = ["Chris Westra <cwestra@gmail.com>"]
+
+[dependencies]
+cursive = "0.7"
+rprompt = "1.0.3"
+
+
