@@ -21,6 +21,12 @@ fn main() {
                 Stars::One => println!("Part 2 answer: {}", advent::day_2::part_2(s)),
             }
         }
+        3 => {
+            match progress.stars {
+                Stars::Zero => println!("Part 1 answer: {}", advent::day_3::part_1(325489)),
+                Stars::One => println!("Part 2 answer: {}", advent::day_3::part_2(325489)),
+            }
+        }
         _ => panic!("Unknown progress day"),
 
     }
