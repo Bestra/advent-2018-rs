@@ -1,30 +1,26 @@
 pub fn part_1(input: &str) -> String {
-    let l = input.len();
     let nums: Vec<u32> = input.chars().map(|c| c.to_digit(10).unwrap()).collect();
-    let mut num_iter = nums.into_iter().cycle().take(l + 1);
-    let first = num_iter.next().unwrap();
-    let (matches, _) = num_iter.fold((vec![], first), |(mut acc, prev), i| {
-        if i == prev {
-            acc.push(i);
-        }
-        (acc, i)
-    });
-    let sum: u32 = matches.into_iter().sum();
-    format!("{}", sum)
+    run(nums, 1)
 }
 
 pub fn part_2(input: &str) -> String {
-    let l = input.len();
-    let step = l / 2;
     let nums: Vec<u32> = input.chars().map(|c| c.to_digit(10).unwrap()).collect();
-    let mut num_iter = nums.into_iter().cycle().take(l + step);
-    let first = num_iter.next().unwrap();
-    let (matches, _) = num_iter.fold((vec![], first), |(mut acc, prev), i| {
-        if i == prev {
-            acc.push(i);
+    let l = nums.len();
+    run(nums, l / 2)
+}
+
+fn run(input: Vec<u32>, step: usize) -> String {
+    let num_iter = input.iter();
+    let mut look_ahead = input.iter().cycle();
+    look_ahead.nth(step - 1);
+    let mut matches =  vec![];
+    for i in num_iter {
+        let ahead = look_ahead.next().unwrap();
+        if ahead == i {
+            matches.push(i);
         }
-        (acc, i)
-    });
+    }
+
     let sum: u32 = matches.into_iter().sum();
     format!("{}", sum)
 }
@@ -34,9 +30,11 @@ pub fn part_2(input: &str) -> String {
 mod tests {
     use super::*;
     fn t1(i: &str, o: &str) {
+        println!("{} should be {}", i, o);
         assert_eq!(part_1(i), o.to_string());
     }
     fn t2(i: &str, o: &str) {
+        println!("{} should be {}", i, o);
         assert_eq!(part_2(i), o.to_string());
     }
 

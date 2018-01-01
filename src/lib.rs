@@ -1,4 +1,5 @@
 pub mod day_1;
+pub mod day_2;
 
 use std::fs::File;
 use std::io::{Write, BufReader, BufRead};
