@@ -13,7 +13,7 @@ fn run(input: Vec<u32>, step: usize) -> String {
     let num_iter = input.iter();
     let mut look_ahead = input.iter().cycle();
     look_ahead.nth(step - 1);
-    let mut matches =  vec![];
+    let mut matches = vec![];
     for i in num_iter {
         let ahead = look_ahead.next().unwrap();
         if ahead == i {
@@ -24,7 +24,6 @@ fn run(input: Vec<u32>, step: usize) -> String {
     let sum: u32 = matches.into_iter().sum();
     format!("{}", sum)
 }
-
 
 #[cfg(test)]
 mod tests {

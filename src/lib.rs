@@ -1,9 +1,10 @@
 pub mod day_1;
 pub mod day_2;
 pub mod day_3;
+pub mod day_4;
 
 use std::fs::File;
-use std::io::{Write, BufReader, BufRead};
+use std::io::{BufRead, BufReader, Write};
 use std::io::prelude::*;
 use std::path::Path;
 use std::process::exit;
@@ -17,7 +18,7 @@ pub fn read_input(day: &str) -> Vec<String> {
     }
     let f = File::open(path).unwrap();
     let buf = BufReader::new(f);
-    buf.lines().map( |l| l.unwrap()).collect()
+    buf.lines().map(|l| l.unwrap()).collect()
 }
 
 pub enum Stars {
@@ -31,7 +32,6 @@ pub struct Progress {
 }
 
 impl Progress {
-
     fn parse_progress(s: String) -> Progress {
         for (i, val) in s.lines().enumerate() {
             let stars = val.chars().filter(|c| *c == '*').count();
@@ -39,19 +39,25 @@ impl Progress {
                 let s = match stars {
                     0 => Stars::Zero,
                     1 => Stars::One,
-                    _ => panic!("SOMANYSTARS")
+                    _ => panic!("SOMANYSTARS"),
                 };
-                return Progress { day: i + 1, stars: s }
+                return Progress {
+                    day: i + 1,
+                    stars: s,
+                };
             }
         }
 
-        return Progress { day: 25, stars: Stars::One }
+        return Progress {
+            day: 25,
+            stars: Stars::One,
+        };
     }
 
     pub fn status(&self) -> String {
         let stars = match self.stars {
             Stars::Zero => "first",
-            Stars::One => "second"
+            Stars::One => "second",
         };
         format!("Time to get your {} star on day {}", stars, self.day)
     }
@@ -64,7 +70,10 @@ impl Progress {
                     .expect("something went wrong reading the file");
                 Progress::parse_progress(contents)
             }
-            Err(_) => Progress { day: 1, stars: Stars::Zero }
+            Err(_) => Progress {
+                day: 1,
+                stars: Stars::Zero,
+            },
         }
     }
 
