@@ -48,10 +48,10 @@ impl Progress {
             }
         }
 
-        return Progress {
+        Progress {
             day: 25,
             stars: Stars::One,
-        };
+        }
     }
 
     pub fn status(&self) -> String {

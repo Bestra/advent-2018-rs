@@ -1,18 +1,10 @@
 pub fn part_1(input: Vec<String>) -> String {
-    let n: u32 = input
-        .iter()
-        .map(|s| nums(s))
-        .map(|nums| checksum(nums))
-        .sum();
+    let n: u32 = input.iter().map(|s| nums(s)).map(checksum).sum();
     format!("{}", n)
 }
 
 pub fn part_2(input: Vec<String>) -> String {
-    let n: u32 = input
-        .iter()
-        .map(|s| nums(s))
-        .map(|nums| divisor(nums))
-        .sum();
+    let n: u32 = input.iter().map(|s| nums(s)).map(divisor).sum();
     format!("{}", n)
 }
 
@@ -28,8 +20,8 @@ fn checksum(n: Vec<u32>) -> u32 {
 }
 
 fn divisor(nums: Vec<u32>) -> u32 {
-    for i in nums.iter() {
-        for j in nums.iter() {
+    for i in &nums {
+        for j in &nums {
             if i % j == 0 && i != j {
                 // println!("{} / {}", i, j);
                 return i / j;

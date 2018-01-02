@@ -62,10 +62,9 @@ impl Spiral {
         ];
 
         let mut sum = 0;
-        for &(x, y) in offsets.iter() {
-            match self.entries.get(&(self.x + x, self.y + y)) {
-                Some(n) => sum += n,
-                None => (),
+        for &(x, y) in &offsets {
+            if let Some(n) = self.entries.get(&(self.x + x, self.y + y)) {
+                sum += n;
             }
         }
         sum

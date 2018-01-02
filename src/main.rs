@@ -36,8 +36,7 @@ fn main() {
     }
 
     let reply = rprompt::prompt_reply_stdout("Did it work?: ").unwrap();
-    match reply.as_ref() {
-        "y" => advent::Progress::read().increment(),
-        _ => (),
+    if let "y" = reply.as_ref() {
+        advent::Progress::read().increment();
     }
 }

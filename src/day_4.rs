@@ -1,11 +1,11 @@
 use std::collections::HashSet;
 pub fn part_1(input: Vec<String>) -> String {
-    let n = input.iter().filter(|s| valid(&s)).count();
+    let n = input.iter().filter(|s| valid(s)).count();
     format!("{}", n)
 }
 
 pub fn part_2(input: Vec<String>) -> String {
-    let n = input.iter().filter(|s| valid(&s)).count();
+    let n = input.iter().filter(|s| valid(s)).count();
     format!("{}", n)
 }
 
